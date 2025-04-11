@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign In</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fada50;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-image: url('Backgroundphotos/SignInBackground.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,2);
+      width: 480px; /* Increased the width */
+      opacity: 2;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #FFA100;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Fill In</h2>
+    <input type="text" id="name" placeholder="Enter your name" required>
+    <input type="password" id="password" placeholder="Enter password" required>
+    <button onclick="signIn()">Enter Site</button>
+    <div class="error" id="errorMsg"></div>
+  </div>
+
+  <script>
+    function signIn() {
+      const name = document.getElementById("name").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const errorMsg = document.getElementById("errorMsg");
+
+      if (!name || !password) {
+        errorMsg.textContent = "Name and password are required.";
+        return;
+      }
+
+      const level1Passwords = ["meena","MKT"];
+      const level2Passwords = ["Ans", "2025"];
+      const level3Passwords = ["Goodmorningteachers","ThankYouAndGoodbye"];
+
+      let level = "";
+
+      if (level1Passwords.includes(password)) {
+        level = "Ako";
+      } else if (level2Passwords.includes(password)) {
+        level = "Teacher";
+      } else if (level3Passwords.includes(password)) {
+        level = "Student";
+      } else {
+        errorMsg.textContent = "Access Denied: Invalid password.";
+        return;
+      }
+
+      localStorage.setItem("userName", name);
+      localStorage.setItem("accessLevel", level);
+      window.location.href = "TheCollection.html";
+    }
+  </script>
+</body>
+</html>
