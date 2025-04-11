@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toolbar with Image Background</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url('mainbg.jpeg');
+      background-size: cover;
+      background-position: center;
+      height: 110px;
+      width: 100%;
+      padding: 10px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+      position: relative;
+    }
+
+    .toolbar button {
+      background-color: transparent;
+      border: 2px solid white;
+      color: white;
+      font-size: 16px;
+      padding: 10px 20px;
+      margin: 0 15px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .toolbar button:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    .toolbar .image-placeholder {
+      width: 190px;
+      height: 190px;
+      background-image: url('ste.jpeg');
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      top: 60%;
+      left: 10px;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(0, 0, 0, .5);
+    }
+
+    .content-container {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 20px auto;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .image-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .image-box a {
+      width: 100%;
+      text-decoration: none;
+    }
+
+    .image-box .image-placeholder {
+      width: 100%;
+      height: 150px;
+      background-color: #ddd;
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .image-box .label {
+      margin-top: 8px;
+      font-size: 16px;
+      color: #333;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .toolbar {
+        height: 50px;
+      }
+
+      .toolbar button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+
+      .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .image-box .image-placeholder {
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="image-placeholder"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="content-container">
+    <!-- Image Grid -->
+<div class="image-grid">
+  <div class="image-box"><a href="pages/1.html"><div class="image-placeholder" style="background-image: url('images/img1.jpg');"></div><div class="label">Reen Guinevere</div></a></div>
+  <div class="image-box"><a href="page2.html"><div class="image-placeholder" style="background-image: url('images/img2.jpg');"></div><div class="label">Janen Lamprea</div></a></div>
+  <div class="image-box"><a href="page3.html"><div class="image-placeholder" style="background-image: url('images/img3.jpg');"></div><div class="label">Creams Cezar </div></a></div>
+  <div class="image-box"><a href="page4.html"><div class="image-placeholder" style="background-image: url('images/img4.jpg');"></div><div class="label">Zenny Gadayab</div></a></div>
+  <div class="image-box"><a href="page5.html"><div class="image-placeholder" style="background-image: url('images/img5.jpg');"></div><div class="label">Esther Lynn Baclagon</div></a></div>
+  <div class="image-box"><a href="page6.html"><div class="image-placeholder" style="background-image: url('images/img6.jpg');"></div><div class="label">Leda Ortegà</div></a></div>
+  <div class="image-box"><a href="page7.html"><div class="image-placeholder" style="background-image: url('images/img7.jpg');"></div><div class="label">Rhodbe Pandoy</div></a></div>
+  <div class="image-box"><a href="page8.html"><div class="image-placeholder" style="background-image: url('images/img8.jpg');"></div><div class="label">Willsa Alayon</div></a></div>
+  <div class="image-box"><a href="page9.html"><div class="image-placeholder" style="background-image: url('images/img9.jpg');"></div><div class="label">Sigfred Mahimpit</div></a></div>
+  <div class="image-box"><a href="page10.html"><div class="image-placeholder" style="background-image: url('images/img10.jpg');"></div><div class="label">Eduard Cepeda</div></a></div>
+  <div class="image-box"><a href="page11.html"><div class="image-placeholder" style="background-image: url('images/img11.jpg');"></div><div class="label">Martin John Salanatin</div></a></div>
+  <div class="image-box"><a href="page12.html"><div class="image-placeholder" style="background-image: url('images/img12.jpg');"></div><div class="label">Ma. Rowen Tunguia</div></a></div>
+  <div class="image-box"><a href="page13.html"><div class="image-placeholder" style="background-image: url('images/img13.jpg');"></div><div class="label">Rilah Sabrine Arnaiz</div></a></div>
+  <div class="image-box"><a href="page14.html"><div class="image-placeholder" style="background-image: url('images/img14.jpg');"></div><div class="label">Cordil Hormillosa Tupas</div></a></div>
+  <div class="image-box"><a href="page15.html"><div class="image-placeholder" style="background-image: url('images/img15.jpg');"></div><div class="label">Harlene Magdaug</div></a></div>
+  <div class="image-box"><a href="page16.html"><div class="image-placeholder" style="background-image: url('images/img16.jpg');"></div><div class="label">Renebelle Gindap</div></a></div>
+  <div class="image-box"><a href="page17.html"><div class="image-placeholder" style="background-image: url('images/img17.jpg');"></div><div class="label">Lisha Mae Arceo</div></a></div>
+  <div class="image-box"><a href="page18.html"><div class="image-placeholder" style="background-image: url('images/img18.jpg');"></div><div class="label">Wyeth Ardenio</div></a></div>
+  <div class="image-box"><a href="page19.html"><div class="image-placeholder" style="background-image: url('images/img19.jpg');"></div><div class="label">Richel Hugos</div></a></div>
+  <div class="image-box"><a href="page20.html"><div class="image-placeholder" style="background-image: url('images/img20.jpg');"></div><div class="label">J-lynn Ramos</div></a></div>
+  <div class="image-box"><a href="page21.html"><div class="image-placeholder" style="background-image: url('images/img21.jpg');"></div><div class="label">Mary Jean Tejares</div></a></div>
+  <div class="image-box"><a href="page22.html"><div class="image-placeholder" style="background-image: url('images/img22.jpg');"></div><div class="label">Fred John Hiponia</div></a></div>
+  <div class="image-box"><a href="page23.html"><div class="image-placeholder" style="background-image: url('images/img23.jpg');"></div><div class="label">Unknown</div></a></div>
+  <div class="image-box"><a href="page24.html"><div class="image-placeholder" style="background-image: url('images/img24.jpg');"></div><div class="label">Unknown</div></a></div>
+  <div class="image-box"><a href="page25.html"><div class="image-placeholder" style="background-image: url('images/img25.jpg');"></div><div class="label">Unknown</div></a></div>
+  <div class="image-box"><a href="page26.html"><div class="image-placeholder" style="background-image: url('images/img26.jpg');"></div><div class="label">Unknown</div></a></div>
+</div>
+
+    </div>
+  </div>
+
+</body>
+</html>
