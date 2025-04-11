@@ -174,55 +174,79 @@
   </div>
 
   <script>
-    const userName = localStorage.getItem("userName");
-    const userLevel = localStorage.getItem("accessLevel");
+  const userName = localStorage.getItem("userName") || "Guest";
+  const userLevel = localStorage.getItem("accessLevel") || "No Level";
 
-    document.getElementById("userName").innerText = userName || "Guest";
-    document.getElementById("userLevel").innerText = userLevel || "No Level";
+  document.getElementById("userName").innerText = userName;
+  document.getElementById("userLevel").innerText = userLevel;
 
-    let likeCountImage = 0;
-    let likedImage = false;
+  let likeCountImage = 0;
+  let likedImage = false;
 
-    document.getElementById("likeBtnImage").addEventListener("click", () => {
-      if (!likedImage) {
-        likedImage = true;
-        likeCountImage++;
-        document.getElementById("likeBtnImage").classList.add("liked");
-        document.getElementById("likeCountImage").innerText = likeCountImage;
-      }
-    });
+  document.getElementById("likeBtnImage").addEventListener("click", () => {
+    if (!likedImage) {
+      likedImage = true;
+      likeCountImage++;
+      document.getElementById("likeBtnImage").classList.add("liked");
+      document.getElementById("likeCountImage").innerText = likeCountImage;
+    }
+  });
 
-    function addComment() {
-      const commenterName = document.getElementById("commenterName").value.trim() || "Anonymous";
-      const text = document.getElementById("commentInput").value;
-      if (!text.trim()) return;
+  function addComment() {
+    const commenterName = document.getElementById("commenterName").value.trim() || "Anonymous";
+    const text = document.getElementById("commentInput").value;
+    if (!text.trim()) return;
 
-      const commentDiv = document.createElement("div");
-      commentDiv.className = "comment";
-      commentDiv.innerHTML = `
-        <strong>${commenterName}</strong>
-        <p>${text}</p>
-        <div class="actions">
-          ${userLevel === "Owner Level 1" ? '<span class="delete">Delete</span>' : ''}
-        </div>
-      `;
-
-      if (userLevel === "Owner Level 1") {
-        commentDiv.querySelector(".delete").addEventListener("click", () => {
-          commentDiv.remove();
-        });
-      }
-
-      document.getElementById("commentSection").appendChild(commentDiv);
+    fetch("/api/comments", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: commenterName, text: text, level: userLevel })
+    })
+    .then(() => {
+      loadComments();
       document.getElementById("commenterName").value = "";
       document.getElementById("commentInput").value = "";
-    }
+    });
+  }
 
-    function toggleCommentSection() {
-      const commentSection = document.getElementById("commentSection");
-      commentSection.style.display = commentSection.style.display === "none" ? "block" : "none";
-    }
-  </script>
+  function loadComments() {
+    fetch("/api/comments")
+      .then(res => res.json())
+      .then(data => {
+        const commentSection = document.getElementById("commentSection");
+        commentSection.innerHTML = "";
+        data.forEach(comment => {
+          const div = document.createElement("div");
+          div.className = "comment";
+          div.innerHTML = `
+            <strong>${comment.name}</strong>
+            <p>${comment.text}</p>
+            <div class="actions">
+              ${userLevel === "Owner Level 1" ? '<span class="delete">Delete</span>' : ''}
+            </div>
+          `;
+          if (userLevel === "Owner Level 1") {
+            div.querySelector(".delete").addEventListener("click", () => {
+              fetch("/api/comments/delete", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ index: data.indexOf(comment) })
+              }).then(loadComments);
+            });
+          }
+          commentSection.appendChild(div);
+        });
+      });
+  }
+
+  function toggleCommentSection() {
+    const commentSection = document.getElementById("commentSection");
+    commentSection.style.display = commentSection.style.display === "none" ? "block" : "none";
+  }
+
+  loadComments(); // Load on page open
+</script>
+
 
 </body>
 </html>
